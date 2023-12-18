@@ -1,0 +1,14 @@
+# Medical dataset for Bsc Thesis from Kerim Birgi under supervision of Jonas Hein
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: /Users/kerim/dev/BachelorThesis/Annotations/Yolov7Trial/train_medical.txt  # unknown nr. images 
+val: /Users/kerim/dev/BachelorThesis/Annotations/Yolov7Trial/val_medical.txt  # unknown nr. images
+test: /Users/kerim/dev/BachelorThesis/Annotations/Yolov7Trial/test_medical.txt  # unknown nr. images
+labels_dir: /Users/kerim/dev/BachelorThesis/Annotations/Yolov7Trial/mvpsp
+train_dir: /Volumes/cvg-ssd-05/mvpsp
+
+# number of classes
+nc: 2
+
+# class names
+names: [ 'powerdrill', 'screwdriver' ]
