@@ -349,7 +349,7 @@ class LoadStreams:  # multiple IP or RTSP cameras
 def img2label_paths(img_paths, train_dir, labels_dir):
     # Define label paths as a function of image paths
     res = ['txt'.join(x.replace(train_dir, labels_dir, 1).rsplit(x.split('.')[-1], 1)) for x in img_paths]
-    print(res)
+    #print(res)
     return res
 
 
@@ -364,7 +364,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.mosaic = self.augment and not self.rect  # load 4 images at a time into a mosaic (only during training)
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
-        self.path = path        
+        self.path = path   
         #self.albumentations = Albumentations() if augment else None
         try:
             f = []  # image files
@@ -379,31 +379,34 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                         f += [x.replace('./', parent) if x.startswith('./') else x for x in t]  # local to global path
                 else:
                     raise Exception(f'{prefix}{p} does not exist')
-            self.img_files = sorted([x.replace('/', os.sep) for x in f if x.split('.')[-1].lower() in img_formats])
+            self.img_files = sorted([x.replace('/', os.sep) for x in f if x.split('.')[-1].lower() in img_formats])    
+            #print("\n")
             #print(self.img_files)
             # output:
             # ['coco/images/train2017/000000062929.jpg', 'coco/images/train2017/000000109622.jpg', 'coco/images/train2017/000000160694.jpg', 'coco/images/train2017/000000308590.jpg', 'coco/images/train2017/000000327573.jpg'] 
             assert self.img_files, f'{prefix}No images found'
         except Exception as e:
             raise Exception(f'{prefix}Error loading data from {path}: {e}\nSee {help_url}')
-        
-        """
-        f = open(path)
-        imgList = f.readlines()
-        f.close()
-        for i,line in enumerate(imgList):
-            imgList[i] = train_dir + line
-        imgList = sorted(imgList)
-        print(imgList)
-        self.img_files = imgList
-        """
+
+        #f = open(path)
+        #imgList = f.readlines()
+        #f.close()
+        #for i,line in enumerate(imgList):
+        #    imgList[i] = train_dir + line
+        #imgList = sorted(imgList)
+        #print(imgList)
+        #self.img_files = imgList
+
         # Check cache
         self.label_files = img2label_paths(self.img_files, train_dir, labels_dir)  # labels
         #print(self.label_files)
         #output: ['coco/labels/train2017/000000062929.txt', 'coco/labels/train2017/000000109622.txt', 'coco/labels/train2017/000000160694.txt', 'coco/labels/train2017/000000308590.txt', 'coco/labels/train2017/000000327573.txt']
         cache_path = (p if p.is_file() else Path(self.label_files[0]).parent).with_suffix('.cache')  # cached labels
-        if cache_path.is_file():
+        #print(cache_path)
+        if False:#cache_path.is_file():
             cache, exists = torch.load(cache_path), True  # load
+            print(cache)
+            
             #if cache['hash'] != get_hash(self.label_files + self.img_files) or 'version' not in cache:  # changed
             #    cache, exists = self.cache_labels(cache_path, prefix), False  # re-cache
         else:
