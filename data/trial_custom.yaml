@@ -1,11 +1,11 @@
 # Medical dataset for Bsc Thesis from Kerim Birgi under supervision of Jonas Hein
 
 # train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
-train: /cluster/home/kbirgi/Annotations/yoloSSD/ssd_train.txt  # unknown nr. images 
-val: /cluster/home/kbirgi/Annotations/yoloSSD/ssd_val.txt  # unknown nr. images
+train: /cluster/home/kbirgi/trialSubset/train_medical.txt  # unknown nr. images 
+val: /cluster/home/kbirgi/trialSubset/val_medical.txt  # unknown nr. images
 #test: /Users/kerim/dev/BachelorThesis/Annotations/trialSubset/test_medical.txt  # unknown nr. images
-labels_dir: /cluster/home/kbirgi/Annotations/yoloSSD
-train_dir: /cluster/project/infk/cvg/heinj/datasets/bop
+labels_dir: /cluster/home/kbirgi/trialSubset
+train_dir: /cluster/home/kbirgi/Data_subset
 
 # number of classes
 nc: 2
