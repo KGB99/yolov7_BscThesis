@@ -4,7 +4,7 @@
 train: /cluster/home/kbirgi/Annotations/yoloSSD/ssd_train.txt  # unknown nr. images 
 val: /cluster/home/kbirgi/Annotations/yoloSSD/ssd_val.txt  # unknown nr. images
 #test: /Users/kerim/dev/BachelorThesis/Annotations/trialSubset/test_medical.txt  # unknown nr. images
-labels_dir: /cluster/home/kbirgi/Annotations/yoloSSD
+labels_dir: /cluster/project/infk/cvg/heinj/students/kbirgi/Annotations/yoloSSD
 train_dir: /cluster/project/infk/cvg/heinj/datasets/bop
 
 # number of classes
