@@ -283,7 +283,7 @@ class LoadImagesFromLabelFile:  # for inference
         # Convert
         img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
         img = np.ascontiguousarray(img)
-
+        #print(path) = /cluster/project/infk/cvg/heinj/datasets/bop/mvpsp/test/004000/rgb/000000.png
         return path, img, img0, self.cap
 
     def new_video(self, path):

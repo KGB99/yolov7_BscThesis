@@ -53,7 +53,7 @@ def detect(save_img=False):
         view_img = check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride)
-    elif opt.imgfromtxt:
+    elif opt.imgfromtext:
         dataset = LoadImagesFromLabelFile(source, img_dir= opt.imgdir, img_size=imgsz, stride=stride)
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride)
@@ -104,9 +104,10 @@ def detect(save_img=False):
                 p, s, im0, frame = path[i], '%g: ' % i, im0s[i].copy(), dataset.count
             else:
                 p, s, im0, frame = path, '', im0s, getattr(dataset, 'frame', 0)
-
             p = Path(p)  # to Path
-            save_path = str(save_dir / p.name)  # img.jpg
+            # change the save_path so that it saves camera and img name, otherwise img names will overwrite each other
+            parent_img_name = (p.parts)[-3] # this should have the camera value in our format 
+            save_path = str(save_dir / (parent_img_name + p.name))  # img.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
@@ -185,8 +186,8 @@ if __name__ == '__main__':
     parser.add_argument('--name', default='exp', help='save results to project/name')
     parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
     parser.add_argument('--no-trace', action='store_true', help='don`t trace model')
-    parser.add_argument('--imgfromtxt', default=False, type=bool)
-    parser.add_argument('--imgdir', default='/cluster/project/infk/cvg/heinj/datasets/bop/mvpsp')
+    parser.add_argument('--imgfromtext', default=False, type=bool)
+    parser.add_argument('--imgdir', default='/cluster/project/infk/cvg/heinj/datasets/bop/mvpsp', type=str)
     opt = parser.parse_args()
     print(opt)
     #check_requirements(exclude=('pycocotools', 'thop'))
