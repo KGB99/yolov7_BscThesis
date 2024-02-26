@@ -308,3 +308,9 @@ YOLOv7-3d-detection & YOLOv7-lidar & YOLOv7-road (with NTUT)
 * [https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose](https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose)
 
 </details>
+
+
+# KERIMS NOTES:
+- for inference the detections are saved in runs/detect/exp*/
+- the names of the files have 12 digits, first 6 digits refer to camera name and last 6 digits to image name
+- E.g: 004000000000.txt refers to camera=004000 image=000000.png or in the cluster at test/004000/rgb/000000.png 
