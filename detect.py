@@ -108,7 +108,7 @@ def detect(save_img=False):
             # change the save_path so that it saves camera and img name, otherwise img names will overwrite each other
             parent_img_name = (p.parts)[-3] # this should have the camera value in our format 
             save_path = str(save_dir / (parent_img_name + p.name))  # img.jpg
-            txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            txt_path = str(save_dir / 'labels' / (parent_img_name + p.stem)) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
                 # Rescale boxes from img_size to im0 size
