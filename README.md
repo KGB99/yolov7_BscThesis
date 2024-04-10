@@ -1,10 +1,5 @@
-This code is currently in the process of being cleaned up and made presentable. The code has been used for the bachelor thesis of Kerim Birgi under supervision of Jonas Hein and Prof. Dr. Marc Pollefeys in the Computer Vision and Geometry Lab at ETH Zurich
+# Training 
+The train scripts can be found in scripts/cluster. There is one for training on the SSD dataset and one for training on the pbr dataset. The major changes i made are to the way the dataloader reads the training data, because previously all images had to be in a specific folder with depth of 1. Now the images can be in any subfolders provided that the right parent folder is provided as argument and the name of the file in the annotations json is correct.
 
-# KERIMS NOTES:
-- for inference the detections are saved in runs/detect/exp*/
-- the names of the files have 12 digits, first 6 digits refer to camera name and last 6 digits to image name
-- E.g: 004000000000.txt refers to camera=004000 image=000000.png or in the cluster at test/004000/rgb/000000.png 
-
-- in the detected labels it seems like first value is class of item
-- the next four values relate to the location of the bounding box
-- last item is confidence of the detection
+# Eval
+For evaluation the scripts can be found in eval_scripts. Again there is one for the SSD dataset and one for the pbr dataset.
